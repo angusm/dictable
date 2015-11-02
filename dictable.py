@@ -19,6 +19,7 @@ class Dictable(object):
 
         dict_to_return = {}
 
+        # Add fields from the given field set
         for field in field_set.get_fields():
 
             # Get the raw value and the field set to apply from it

@@ -22,22 +22,24 @@ class ToDictFieldSet(object):
             direct_field = field_array[0]
             remaining_fields = field_array[1:]
 
+            # Access the value so its set in the default dict
+            self.fields[direct_field]
+
             # Add the remaining fields to the field set tied to the given field
-            self.fields[direct_field].add_fields(remaining_fields)
+            if len(remaining_fields) > 0:
+                self.fields[direct_field].add_fields([remaining_fields])
 
     def get_fields(self):
+        """
+        Return the names of the fields contained in the set
+        """
         return self.fields.keys()
 
     def get_sub_field_set(self, field):
         """
         Get the sub field set for the given field
         """
-
-        sub_field_set = self.fields[field]
-        if sub_field_set.has_fields():
-            return sub_field_set
-        else:
-            return None
+        return self.fields[field]
 
     def has_fields(self):
         """
